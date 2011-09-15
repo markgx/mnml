@@ -7,6 +7,8 @@ gem 'rails', '3.1.0'
 
 gem 'sqlite3'
 
+gem 'oa-oauth', '~> 0.3.0.rc3'
+gem 'twitter'
 
 # Gems used only for assets and not required
 # in production environments by default.
