@@ -1,1 +1,17 @@
-<h1>Hello <%= @user.name %></h1>
+<%= content_for :head_content do %>
+  <script type="text/javascript">
+    var tweets = <%= raw @tweets.to_json %>;
+
+    $(document).ready(function() {
+      app.initialize(tweets);
+    });
+  </script>
+<% end %>
+
+<h2>Timeline</h2>
+
+<!--
+  <%= session[:access_token] %>
+  <%= session[:access_secret] %>
+-->
+

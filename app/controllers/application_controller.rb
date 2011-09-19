@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
     end
     @client ||= Twitter::Client.new
   end
+
+  def is_logged_in?
+    session['access_token'] && session['access_secret']
+  end
 end

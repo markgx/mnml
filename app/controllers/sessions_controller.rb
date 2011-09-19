@@ -6,8 +6,11 @@ class SessionsController < ApplicationController
   end
 
   def show
-    if session['access_token'] && session['access_secret']
+    if is_logged_in?
       @user = client.user
+      @tweets = client.home_timeline.map { |t|
+        { :text => t.text, :full_name => t.user.name,
+          :screen_name => t.user.screen_name } }
     else
       redirect_to failure_path
     end
