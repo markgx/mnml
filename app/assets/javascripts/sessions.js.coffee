@@ -13,7 +13,11 @@ TweetView = Backbone.View.extend
   tagName: 'li'
 
   render: ->
-    $(@el).html("#{@model.get('screen_name')}: #{@model.get('text')}")
+    $(@el).html($('#tweet-template').tmpl
+      screen_name: @model.get('screen_name')
+      tweet_text: @model.get('text')
+    )
+
     $(@el).data('statusId': @model.id)
 
 TimelineView = Backbone.View.extend
@@ -23,7 +27,7 @@ TimelineView = Backbone.View.extend
   render: ->
     if tweets.length > 0
       $ul = $('<ul>')
-      $('body').append($ul)
+      $(@el).append($ul)
 
       tweets.each((t) ->
         tweetView = new TweetView(model: t)

@@ -1,0 +1,27 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  color: #333;
+}
+
+#container {
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#timeline-view ul {
+  padding-left: 0;
+  font-size: 90%;
+}
+
+#timeline-view ul li {
+  list-style-type: none;
+  border-top: 1px solid #ddd;
+  padding: 9px 0;
+}
+
+.screen_name a {
+  color: #dbab00;
+  text-decoration: none;
+}

@@ -8,8 +8,6 @@
   </script>
 <% end %>
 
-<h2>Timeline</h2>
-
 <!--
   <%= session[:access_token] %>
   <%= session[:access_secret] %>
@@ -17,3 +15,8 @@
 
 <div id="timeline-view">
 </div>
+
+<script id="tweet-template" type="text/x-jQuery-tmpl">
+  <div class="screen_name"><a href="#">${screen_name}</a></div>
+  <div class="tweet-text">${tweet_text}</div>
+</script>
