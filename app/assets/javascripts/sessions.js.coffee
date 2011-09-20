@@ -7,6 +7,9 @@ Tweet = Backbone.Model.extend()
 Tweets = Backbone.Collection.extend
   model: Tweet
 
+  comparator: (tweet) ->
+    tweet.get('id')
+
 tweets = new Tweets
 
 TweetView = Backbone.View.extend
@@ -26,21 +29,40 @@ TweetView = Backbone.View.extend
 
 TimelineView = Backbone.View.extend
   initialize: ->
-    @render()
+    tweets.bind('add', @addTweet, this)
 
-  render: ->
+  addTweet: (tweet) ->
+    tweetView = new TweetView(model: tweet)
+    tweetView.render()
+    @$('ul').append(tweetView.el)
+
+  getNewTweets: ->
+    sinceId = null
+
     if tweets.length > 0
-      $ul = $('<ul>')
-      $(@el).append($ul)
+      sinceId = tweets.at(tweets.length - 1).id
 
-      tweets.each((t) ->
-        tweetView = new TweetView(model: t)
-        tweetView.render()
-        $ul.append(tweetView.el)
+    $.get('/tweets', { sinceId: sinceId }, (data) ->
+      console.debug('add stuff')
+
+      newTweets = data.reverse()
+      _(newTweets).each((t) ->
+        tweets.add(new Tweet
+          id: t.id
+          text: t.text
+          screen_name: t.screen_name
+          full_name: t.full_name
+        )
       )
+    )
+
+timelineView = null
 
 window.app =
   initialize: (initialTweets) ->
+    timelineView = new TimelineView
+      el: $('#timeline-view')
+
     _(initialTweets).each((t) ->
       tweets.add(new Tweet
         id: t.id
@@ -50,5 +72,6 @@ window.app =
       )
     )
 
-    new TimelineView
-      el: $('#timeline-view')
+# for debug
+window.getNewTweets = ->
+  timelineView.getNewTweets()
