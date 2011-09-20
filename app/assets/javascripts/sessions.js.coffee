@@ -15,10 +15,14 @@ TweetView = Backbone.View.extend
   render: ->
     $(@el).html($('#tweet-template').tmpl
       screen_name: @model.get('screen_name')
-      tweet_text: @model.get('text')
+      tweet_text: @_linkify(@model.get('text'))
     )
 
     $(@el).data('statusId': @model.id)
+
+  _linkify: (text) ->
+    regex = /(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?[^.\s]/
+    text.replace(regex, '<a href="$&" target="_blank">$&</a>')
 
 TimelineView = Backbone.View.extend
   initialize: ->

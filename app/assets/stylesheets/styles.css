@@ -21,7 +21,11 @@ body {
   padding: 9px 0;
 }
 
-.screen_name a {
+.screen_name a, .tweet-text a {
   color: #dbab00;
   text-decoration: none;
+}
+
+.screen_name a {
+  font-weight: bold;
 }
