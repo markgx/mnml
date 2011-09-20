@@ -8,4 +8,5 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require jquery.tmpl
 //= require_tree .
