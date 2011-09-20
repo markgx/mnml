@@ -5,7 +5,7 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+#gem 'sqlite3'
 
 gem 'oa-oauth', '~> 0.3.0.rc3'
 gem 'twitter'
@@ -22,6 +22,10 @@ gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
+
+group :production do
+  gem 'thin'
+end
 
 # Deploy with Capistrano
 # gem 'capistrano'
