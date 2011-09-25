@@ -10,6 +10,10 @@ body {
   margin-right: auto;
 }
 
+#compose-field {
+  width: 100%;
+}
+
 #timeline-view ul {
   padding-left: 0;
   font-size: 90%;
