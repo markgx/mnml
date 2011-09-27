@@ -32,12 +32,17 @@ TimelineView = Backbone.View.extend
     tweets.bind('add', @addTweet, this)
 
   events:
+    'keyup #compose-field': 'editingComposeField'
     'click #tweet-button': 'sendTweet'
 
   addTweet: (tweet) ->
     tweetView = new TweetView(model: tweet)
     tweetView.render()
     @$('ul').append(tweetView.el)
+
+  editingComposeField: (e) ->
+    count = $(e.currentTarget).val().length
+    @$('#remaining-chars').text("#{140 - count} remaining")
 
   sendTweet: ->
     $.post('/tweets', { 'tweet': @$('#compose-field').val() }, (data) =>
