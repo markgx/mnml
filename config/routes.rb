@@ -2,7 +2,7 @@ Mnml::Application.routes.draw do
   get '/auth/twitter/callback', :to => 'sessions#create', :as => 'callback'
   get '/auth/failure', :to => 'sessions#error', :as => 'failure'
   get '/timeline', :to => 'sessions#show', :as => 'show'
-  delete '/signout', :to => 'sessions#destroy', :as => 'signout'
+  get '/signout', :to => 'sessions#destroy', :as => 'signout'
 
   resource :tweets
 
