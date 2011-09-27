@@ -7,4 +7,9 @@ class TweetsController < ApplicationController
 
     render :json => tweets
   end
+
+  def create
+    client.update(params['tweet'])
+    head :ok
+  end
 end

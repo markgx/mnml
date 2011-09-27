@@ -31,10 +31,18 @@ TimelineView = Backbone.View.extend
   initialize: ->
     tweets.bind('add', @addTweet, this)
 
+  events:
+    'click #tweet-button': 'sendTweet'
+
   addTweet: (tweet) ->
     tweetView = new TweetView(model: tweet)
     tweetView.render()
     @$('ul').append(tweetView.el)
+
+  sendTweet: ->
+    $.post('/tweets', { 'tweet': @$('#compose-field').val() }, (data) =>
+      @$('#compose-field').val('')
+    )
 
   getNewTweets: ->
     sinceId = null
@@ -43,8 +51,6 @@ TimelineView = Backbone.View.extend
       sinceId = tweets.at(tweets.length - 1).id
 
     $.get('/tweets', { sinceId: sinceId }, (data) ->
-      console.debug('add stuff')
-
       newTweets = data.reverse()
       _(newTweets).each((t) ->
         tweets.add(new Tweet

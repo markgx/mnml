@@ -4,7 +4,7 @@ Mnml::Application.routes.draw do
   get '/timeline', :to => 'sessions#show', :as => 'show'
   delete '/signout', :to => 'sessions#destroy', :as => 'signout'
 
-  get '/tweets', :to => 'tweets#index', :as => 'tweets'
+  resource :tweets
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
