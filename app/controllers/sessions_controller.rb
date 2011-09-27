@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
       @tweets = client.home_timeline.map { |t|
         { :id => t.id, :text => t.text,
           :full_name => t.user.name,
-          :screen_name => t.user.screen_name } }
+          :screen_name => t.user.screen_name,
+          :created_at => DateTime.parse(t.created_at).to_s } }
     else
       redirect_to failure_path
     end

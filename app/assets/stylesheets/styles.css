@@ -51,3 +51,8 @@ body {
 .screen_name a {
   font-weight: bold;
 }
+
+.status-line {
+  color: #666;
+  font-size: 90%;
+}

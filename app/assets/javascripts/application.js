@@ -9,4 +9,5 @@
 //= require underscore
 //= require backbone
 //= require jquery.tmpl
+//= require jquery.timeago
 //= require_tree .

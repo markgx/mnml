@@ -19,6 +19,7 @@ TweetView = Backbone.View.extend
     $(@el).html($('#tweet-template').tmpl
       screen_name: @model.get('screen_name')
       tweet_text: @_linkify(@model.get('text'))
+      created_at: @model.get('created_at')
     )
 
     $(@el).data('statusId': @model.id)
@@ -84,6 +85,7 @@ window.app =
         text: t.text
         screen_name: t.screen_name
         full_name: t.full_name
+        created_at: t.created_at
       )
     )
 

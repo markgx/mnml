@@ -4,6 +4,7 @@
 
     $(document).ready(function() {
       app.initialize(tweets);
+      $('.timeago').timeago();
     });
   </script>
 <% end %>
@@ -27,4 +28,5 @@
 <script id="tweet-template" type="text/x-jQuery-tmpl">
   <div class="screen_name"><a href="http://twitter.com/${screen_name}" target="_blank">${screen_name}</a></div>
   <div class="tweet-text">{{html tweet_text}}</div>
+  <div class="status-line"><span class="timeago" title="${created_at}">${created_at}</span></div>
 </script>
