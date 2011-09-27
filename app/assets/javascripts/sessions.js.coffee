@@ -47,6 +47,10 @@ TimelineView = Backbone.View.extend
   sendTweet: ->
     $.post('/tweets', { 'tweet': @$('#compose-field').val() }, (data) =>
       @$('#compose-field').val('')
+      @$('#remaining-chars').text('140 remaining')
+      @getNewTweets()
+    ).error(->
+      alert 'There was an error posting your tweet.'
     )
 
   getNewTweets: ->
