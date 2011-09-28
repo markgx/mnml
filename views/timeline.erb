@@ -1,6 +1,6 @@
-<%= content_for :head_content do %>
+<% content_for :head_content do %>
   <script type="text/javascript">
-    var tweets = <%= raw @tweets.to_json %>;
+    var tweets = <%= @tweets.to_json %>;
 
     $(document).ready(function() {
       app.initialize(tweets);

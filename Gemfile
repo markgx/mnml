@@ -1,39 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-#gem 'sqlite3'
-
-gem 'oa-oauth', '~> 0.3.0.rc3'
-gem 'twitter'
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
-end
-
-gem 'jquery-rails'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-group :production do
-  gem 'thin'
-end
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
-end
+gem 'sinatra', '~> 1.2.6'
+gem 'thin', '~> 1.2.11'
+gem 'omniauth', '~> 0.3.0.rc3'
+gem 'twitter', '~> 1.7.2'
+gem 'sinatra-content-for', '~> 0.2'

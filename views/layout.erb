@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mnml</title>
+  <link rel="stylesheet" href="/stylesheets/normalize.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/styles.css" type="text/css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script src="/javascripts/underscore.js"></script>
+  <script src="/javascripts/backbone.js"></script>
+  <script src="/javascripts/jquery.tmpl.js"></script>
+  <script src="/javascripts/jquery.timeago.js"></script>
+  <script src="/javascripts/application.js"></script>
+
+  <% yield_content :head_content %>
+</head>
+<body>
+
+<div id="container">
+  <h1>Mnml</h1>
+  <%= yield %>
+</div>
+
+</body>
+</html>
