@@ -85,6 +85,7 @@ GEM
     sinatra-content-for (0.2)
       sinatra
     systemu (2.2.0)
+    therubyracer-heroku (0.8.1.pre3)
     thin (1.2.11)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -108,5 +109,6 @@ DEPENDENCIES
   omniauth (~> 0.3.0.rc3)
   sinatra (~> 1.2.6)
   sinatra-content-for (~> 0.2)
+  therubyracer-heroku (= 0.8.1.pre3)
   thin (~> 1.2.11)
   twitter (~> 1.7.2)
