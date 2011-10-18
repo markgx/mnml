@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'sinatra', '~> 1.2.6'
-gem 'thin', '~> 1.2.11'
+gem 'sinatra', '~> 1.3.1'
 gem 'coffee-script'
 gem 'sinatra-assetpack', :git => 'git://github.com/rstacruz/sinatra-assetpack.git', :ref => 'ab2a413', :require => 'sinatra/assetpack'
 gem 'omniauth', '~> 0.3.0.rc3'
