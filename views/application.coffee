@@ -13,9 +13,9 @@ TweetView = Backbone.View.extend
 
   render: ->
     $(@el).html($('#tweet-template').tmpl
-      screen_name: @model.get('screen_name')
-      tweet_text: @_linkify(@model.get('text'))
-      created_at: @model.get('created_at')
+      screen_name: @model.get('data').user.screen_name
+      tweet_text: @_linkify(@model.get('data').text)
+      created_at: (new Date(@model.get('data').created_at)).toISOString()
     )
 
     $(@el).data('statusId': @model.id)
@@ -75,15 +75,7 @@ window.app =
     timelineView = new TimelineView
       el: $('#timeline-view')
 
-    _(initialTweets).each((t) ->
-      tweets.add(new Tweet
-        id: t.id
-        text: t.text
-        screen_name: t.screen_name
-        full_name: t.full_name
-        created_at: t.created_at
-      )
-    )
+    tweets.add(data: tweet) for tweet in initialTweets
 
 # for debug
 window.getNewTweets = ->

@@ -3,7 +3,7 @@ require 'sinatra/content_for'
 require 'sinatra/assetpack'
 require 'coffee-script'
 require 'omniauth'
-require 'twitter'
+require 'grackle'
 require 'date'
 
 class App < Sinatra::Base
@@ -42,14 +42,18 @@ class App < Sinatra::Base
   helpers Sinatra::ContentFor
 
   before do
-    Twitter.configure do |config|
-      config.consumer_key = ENV['CONSUMER_KEY']
-      config.consumer_secret = ENV['CONSUMER_SECRET']
-      config.oauth_token = session[:access_token]
-      config.oauth_token_secret = session[:access_secret]
-    end
-
-    @client ||= Twitter::Client.new
+    @client = Grackle::Client.new(
+      :auth => {
+        :type => :oauth,
+        :consumer_key => ENV['CONSUMER_KEY'],
+        :consumer_secret => ENV['CONSUMER_SECRET'],
+        :token => session[:access_token],
+        :token_secret => session[:access_secret]
+      },
+      :handlers => {
+        :json => Grackle::Handlers::StringHandler.new
+      }
+    )
   end
 
   get '/' do
@@ -70,12 +74,7 @@ class App < Sinatra::Base
     if !is_logged_in
       redirect to('/auth/twitter/callback')
     else
-      @user = @client.user
-      @tweets = @client.home_timeline.map { |t|
-        { :id => t.id, :text => t.text,
-          :full_name => t.user.name,
-          :screen_name => t.user.screen_name,
-          :created_at => DateTime.parse(t.created_at).to_s } }
+      @tweets = @client.statuses.home_timeline?
       erb :timeline
     end
   end
